@@ -3,8 +3,22 @@
 const transaction = require('objection').transaction;
 const Person = require('./models/Person');
 const Movie = require('./models/Movie');
+const Animal = require('./models/Animal');
 
-module.exports = (app) => {
+const crud = require('./crud');
+
+module.exports = (app, port) => {
+
+  crud.generate(app, '/api', [Person, Movie, Animal]);
+
+  crud.setupSwagger(app, port, {
+    title: 'Basic REST API',
+    description: 'Basic CRUD operations for Person, Movie and Animal',
+    termsOfServiceUrl: '',
+    contact: '',
+    license: '',
+    licenseUrl: ''
+  });
 
   // Create a new Person. You can pass relations with the person
   // and they also get inserted.

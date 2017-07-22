@@ -10,6 +10,8 @@ const knexConfig = require('./knexfile');
 const registerApi = require('./api');
 const Model = require('objection').Model;
 
+const PORT = 8641;
+
 // Adds yield support for express router.
 require('express-yields')
 
@@ -22,12 +24,13 @@ const knex = Knex(knexConfig.development);
 Model.knex(knex);
 
 const app = express()
+  .use(bodyParser())
   .use(bodyParser.json())
   .use(morgan('dev'))
   .set('json spaces', 2);
 
 // Register our REST API.
-registerApi(app);
+registerApi(app, PORT);
 
 // Error handling. The `ValidationError` instances thrown by objection.js have a `statusCode`
 // property that is sent as the status code of the response.
@@ -39,6 +42,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-const server = app.listen(8641, () => {
+const server = app.listen(PORT, () => {
   console.log('Example app listening at port %s', server.address().port);
 });

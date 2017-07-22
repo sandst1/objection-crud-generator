@@ -1,0 +1,22 @@
+{
+  "name": "objection-crud-generator",
+  "version": "0.0.1",
+  "description": "A basic REST API generator for objection.js models, based on the objection.js ES6 example",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Topi Santakivi",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.3.5",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "express-yields": "^1.0.2",
+    "knex": "^0.12.0",
+    "lodash": "^4.12.0",
+    "morgan": "^1.7.0",
+    "objection": "^0.8.0",
+    "sqlite3": "^3.1.3"
+  }
+}

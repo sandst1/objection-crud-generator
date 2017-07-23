@@ -11,14 +11,7 @@ module.exports = (app, port) => {
 
   crud.generate(app, '/api', [Person, Movie, Animal]);
 
-  crud.setupSwagger(app, port, {
-    title: 'Basic REST API',
-    description: 'Basic CRUD operations for Person, Movie and Animal',
-    termsOfServiceUrl: '',
-    contact: '',
-    license: '',
-    licenseUrl: ''
-  });
+  /*
 
   // Create a new Person. You can pass relations with the person
   // and they also get inserted.
@@ -194,6 +187,8 @@ module.exports = (app, port) => {
     const actors = yield movie.$relatedQuery('actors');
     res.send(actors);
   });
+
+  */
 };
 
 // The error thrown by this function is handled in the error handler middleware in app.js.

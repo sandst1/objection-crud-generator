@@ -5,49 +5,6 @@ function tableUrl(basePath, table) {
   return `${basePath}/${table.tableName.toLowerCase()}`;
 }
 
-function setupSwagger (app, apiBasePath, apiInfo, apiDocs) {
-  const swaggerPath = express();
-
-  // http://localhost:8641/v1/api-docs
-
-  app.use("/swagger", swaggerPath);
-  const swagger = require('swagger-node-express').createNew(swaggerPath);
-  app.use(express.static('swagger-ui'));
-
-  swagger.setApiInfo(apiInfo);
-
-  app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/swagger-ui/index.html');
-  });
-
-  swagger.configureSwaggerPaths('', 'api-docs', '');
-  swagger.configure(`http://localhost.${PORT}`, '0.0.1');
-
-  swaggerPath.get('/api-docs', (req, res) => {
-    res.send(apiDocs);
-  });
-}
-
-function apiDocsTemplate(basePath) {
-  return {
-    swagger: "2.0",
-    info: {
-      version: "1.0.0",
-      title: "spec",
-      description: "Swagger spec",
-      termsOfService: ""
-    },
-    basePath: basePath,
-    schemes: ["http"],
-    consumes: ["application/json"],
-    produces: ["application/json"],
-    paths: {
-
-    },
-
-  };
-}
-
 module.exports = {
   generate: (app, basePath, tables, apiInfo) => {
 
@@ -100,9 +57,6 @@ module.exports = {
         res.send({});
       });
     });
-
-    setupSwagger(app, basePath, apiInfo, apiDocs);
-
   }
 };
 
